@@ -1,0 +1,21 @@
+
+name: Setup Node and install npm dependencies
+description: Checks out the project, configures Node, and installs locked dependencies.
+
+inputs:
+  node-version:
+    required: false
+    default: "20"
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+
+    - uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: npm
+
+    - shell: bash
+      run: npm ci

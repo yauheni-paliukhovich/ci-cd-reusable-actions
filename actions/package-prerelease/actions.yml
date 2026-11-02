@@ -1,0 +1,17 @@
+
+name: Package prerelease
+description: Creates a version-suffixed npm tarball without changing Git history.
+
+inputs:
+  version:
+    description: Prerelease version, for example 0.1.0-dev-a1b2c3d
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        npm version "${{ inputs.version }}" --no-git-tag-version
+        npm run build
+        npm pack

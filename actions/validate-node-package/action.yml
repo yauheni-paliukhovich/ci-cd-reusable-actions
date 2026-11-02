@@ -1,0 +1,15 @@
+
+name: Validate Node package
+description: Runs linting, build, and unit tests for an npm package.
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: npm run lint
+
+    - shell: bash
+      run: npm run build
+
+    - shell: bash
+      run: npm test
